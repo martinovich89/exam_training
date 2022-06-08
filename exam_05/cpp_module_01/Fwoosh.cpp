@@ -13,7 +13,7 @@ Fwoosh::~Fwoosh()
 
 }
 
-Fwoosh *Fwoosh::clone()
+ASpell *Fwoosh::clone() const
 {
 	Fwoosh *ptr = new Fwoosh;
 	return (ptr);

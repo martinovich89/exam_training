@@ -1,9 +1,12 @@
 #pragma once
 
-#include "ATarget.hpp"
+//#include "Warlock.hpp"
+//#include "ATarget.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
+
+class ATarget;
 
 class ASpell
 {
@@ -13,7 +16,7 @@ class ASpell
 
     public:
         ASpell();
-        virtual ~ASpell() = 0;
+        virtual ~ASpell();
         ASpell(const ASpell &other);
         ASpell &operator=(const ASpell &other);
 
@@ -22,7 +25,7 @@ class ASpell
         std::string getName() const;
         std::string getEffects() const;
 
-        void    launch(const ATarget &target);
+        void    launch(const ATarget &target) const;
 
-        virtual ASpell *clone() = 0;
+        virtual ASpell *clone() const = 0;
 };

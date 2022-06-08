@@ -1,4 +1,5 @@
 #include "ASpell.hpp"
+#include "ATarget.hpp"
 
 ASpell::ASpell() {}
 
@@ -25,7 +26,7 @@ std::string ASpell::getName() const
 	return (name);
 }
 
-void ASpell::launch(const ATarget &target)
+void ASpell::launch(const ATarget &target) const
 {
 	target.getHitBySpell(*this);
 }

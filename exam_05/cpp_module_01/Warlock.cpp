@@ -1,4 +1,4 @@
-#include "ASpell.hpp"
+//#include "ASpell.hpp"
 #include "Warlock.hpp"
 
 Warlock::~Warlock()
@@ -31,9 +31,9 @@ void	Warlock::forgetSpell(std::string spell)
 	}
 }
 
-void	Warlock::launchSpell(std::string spell, ATarget &target)
+void	Warlock::launchSpell(std::string spell, ATarget &target) const
 {
-	typedef typename std::vector<ASpell *>::iterator iter;
+	typedef typename std::vector<ASpell *>::const_iterator iter;
 	for (iter it = spells.begin(); it != spells.end(); it++)
 	{
 		if (spell == (*it)->getName())

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ASpell.hpp"
+#include "ATarget.hpp"
+#include "Dummy.hpp"
+#include "Fwoosh.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -23,7 +26,7 @@ class Warlock
         void    introduce() const;
 		void	learnSpell(ASpell *spell);
 		void	forgetSpell(std::string spell);
-		void	launchSpell(std::string spell, ATarget &target);
+		void	launchSpell(std::string spell, ATarget &target) const;
 
         std::string getName() const;
         std::string getTitle() const;

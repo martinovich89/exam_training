@@ -17,7 +17,7 @@ class Fwoosh : public ASpell
 		Fwoosh(const ASpell &other);
 		Fwoosh &operator=(const Fwoosh &other);
 
-		Fwoosh *clone();
+		ASpell *clone() const;
 
 
 };
