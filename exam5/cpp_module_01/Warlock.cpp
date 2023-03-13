@@ -1,19 +1,14 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock(const std::string &newName, const std::string &newTitle) : name(newName), title(newTitle), spellBook()
+Warlock::Warlock(const std::string &name, const std::string &title) : name(name), title(title), spells()
 {
-	std::cout << name << ": This looks like another boring day." << std::endl;	
+	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 
 Warlock::~Warlock()
 {
 	std::cout << name << ": My job here is done!" << std::endl;
-	clear();
-}
-
-void Warlock::clear()
-{
-	
+	spells.clear();
 }
 
 void Warlock::introduce() const
@@ -21,50 +16,44 @@ void Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-void Warlock::learnSpell(const ASpell *spell)
+void Warlock::learnSpell(ASpell *spell)
 {
-	if (spell)
+	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
-		for (std::vector<ASpell *>::iterator it = spellBook.begin(); it != spellBook.end(); it++)
-		{		
-			if ((*it)->getName() == spell->getName())
-				return;
-		}
-		spellBook.push_back(spell->clone());
+		if (*it == spell)
+			return ;
 	}
+	spells.push_back(spell);
 }
 
-void Warlock::forgetSpell(const std::string spell)
+void Warlock::forgetSpell(const std::string &spell)
 {
-	for (std::vector<ASpell *>::iterator it = spellBook.begin(); it != spellBook.end(); it++)
+	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
 		if ((*it)->getName() == spell)
 		{
-			delete (*it);
-			spellBook.erase(it);
+			spells.erase(it);
 			return ;
 		}
 	}
 }
 
-void Warlock::launchSpell(const std::string spell, const ATarget &target)
+
+void Warlock::launchSpell(const std::string &spell, const ATarget &target)
 {
-	for (std::vector<ASpell *>::iterator it = spellBook.begin(); it != spellBook.end(); it++)
+	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
 		if ((*it)->getName() == spell)
-		{
 			(*it)->launch(target);
-			return ;
-		}
 	}
 }
 
-std::string Warlock::getName() const
+const std::string &Warlock::getName() const
 {
 	return (name);
 }
 
-std::string Warlock::getTitle() const
+const std::string &Warlock::getTitle() const
 {
 	return (title);
 }

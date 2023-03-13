@@ -1,8 +1,8 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock(const std::string &newName, const std::string &newTitle) : name(newName), title(newTitle)
+Warlock::Warlock(const std::string &name, const std::string &title) : name(name), title(title)
 {
-	std::cout << name << ": This looks like another boring day." << std::endl;	
+	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 
 Warlock::~Warlock()
@@ -15,12 +15,12 @@ void Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-std::string Warlock::getName() const
+const std::string &Warlock::getName() const
 {
 	return (name);
 }
 
-std::string Warlock::getTitle() const
+const std::string &Warlock::getTitle() const
 {
 	return (title);
 }

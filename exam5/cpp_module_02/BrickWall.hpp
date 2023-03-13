@@ -1,17 +1,17 @@
-#pragma once
+// #pragma once
 
 #include <iostream>
 #include <string>
-#include "ATarget.hpp"
+#include "ASpell.hpp"
 
 class BrickWall : public ATarget
 {
 	public :
 		BrickWall();
+		BrickWall(const std::string &type);
 		BrickWall(const BrickWall &other);
-		BrickWall &operator=(const BrickWall &other);
 		~BrickWall();
 
-		BrickWall *clone() const;
-
+		ATarget *clone() const;
+		void getHitBySpell(const ASpell &spell) const;
 };

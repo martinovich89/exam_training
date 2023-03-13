@@ -1,4 +1,4 @@
-#pragma once
+// #pragma once
 
 #include <iostream>
 #include <string>
@@ -7,9 +7,6 @@
 
 class SpellBook
 {
-	protected :
-		std::vector<ASpell *> spells;
-
 	public :
 		SpellBook();
 		SpellBook(const SpellBook &other);
@@ -17,6 +14,8 @@ class SpellBook
 		~SpellBook();
 
 		void learnSpell(ASpell *);
-		void forgetSpell(const std::string &spell);
-		ASpell *createSpell(const std::string &spell);
+		void forgetSpell(std::string const &spell);
+		ASpell *createSpell(std::string const &spell);
+	private :
+		std::vector<ASpell *> spells;
 };

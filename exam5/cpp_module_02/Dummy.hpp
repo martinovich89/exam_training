@@ -2,18 +2,16 @@
 
 #include <iostream>
 #include <string>
-#include "ATarget.hpp"
+#include "ASpell.hpp"
 
 class Dummy : public ATarget
 {
 	public :
 		Dummy();
+		Dummy(const std::string &type);
 		Dummy(const Dummy &other);
-		Dummy &operator=(const Dummy &other);
 		~Dummy();
 
-		Dummy *clone() const;
-
-	// protected :
-	// 	std::string type;
+		ATarget *clone() const;
+		void getHitBySpell(const ASpell &spell) const;
 };

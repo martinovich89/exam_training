@@ -1,19 +1,13 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock(const std::string &newName, const std::string &newTitle) : name(newName), title(newTitle), spellBook()
+Warlock::Warlock(const std::string &name, const std::string &title) : name(name), title(title), spellbook()
 {
-	std::cout << name << ": This looks like another boring day." << std::endl;	
+	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 
 Warlock::~Warlock()
 {
 	std::cout << name << ": My job here is done!" << std::endl;
-	clear();
-}
-
-void Warlock::clear()
-{
-	
 }
 
 void Warlock::introduce() const
@@ -23,28 +17,30 @@ void Warlock::introduce() const
 
 void Warlock::learnSpell(ASpell *spell)
 {
-	spellBook.learnSpell(spell);
+	spellbook.learnSpell(spell);
 }
 
-void Warlock::forgetSpell(const std::string spell)
+void Warlock::forgetSpell(const std::string &spell)
 {
-	spellBook.forgetSpell(spell);
+	spellbook.forgetSpell(spell);
 }
 
-void Warlock::launchSpell(const std::string spell, const ATarget &target)
+void Warlock::launchSpell(const std::string &spell, const ATarget &target)
 {
-	ASpell *ptr;
-	ptr = spellBook.createSpell(spell);
-	ptr->launch(target);
-	delete ptr;
+	ASpell *tolaunch = spellbook.createSpell(spell);
+	if (tolaunch)
+	{
+		target.getHitBySpell(*tolaunch);
+	}
+	delete tolaunch;
 }
 
-std::string Warlock::getName() const
+const std::string &Warlock::getName() const
 {
 	return (name);
 }
 
-std::string Warlock::getTitle() const
+const std::string &Warlock::getTitle() const
 {
 	return (title);
 }

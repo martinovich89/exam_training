@@ -8,47 +8,38 @@ SpellBook::SpellBook() : spells()
 SpellBook::~SpellBook()
 {
 	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
-	{
-		delete (*it);
-	}
+		delete *it;
 	spells.clear();
 }
 
 void SpellBook::learnSpell(ASpell *spell)
 {
-	int i = 0;
-	if (spell)
+	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
-		for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++, i++)
-		{
-			if ((*it)->getName() == spell->getName())
-				return ;
-		}
-		spells.push_back(spell->clone());
+		if ((*it)->getName() == spell->getName())
+			return ;
 	}
+	spells.push_back(spell->clone());
 }
 
-void SpellBook::forgetSpell(const std::string &spell)
+void SpellBook::forgetSpell(std::string const &spell)
 {
 	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
 		if ((*it)->getName() == spell)
 		{
-			spells.pop_back();
-			delete (*it);
+			spells.erase(it);
 			return ;
 		}
 	}
 }
 
-ASpell *SpellBook::createSpell(const std::string &spell)
+ASpell *SpellBook::createSpell(std::string const &spell)
 {
 	for (std::vector<ASpell *>::iterator it = spells.begin(); it != spells.end(); it++)
 	{
 		if ((*it)->getName() == spell)
-		{
 			return ((*it)->clone());
-		}
 	}
 	return (NULL);
 }
